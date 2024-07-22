@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./styles.css">
+		<script defer rel='application/javascript' src='index.js'></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+		<title>Pizza Calculator</title>
+	</head>
+	<body>
+		<header>
+			<h1>Pizza Calculator</h1>
+		</header>
+		<hr>
+		<main>
+			<section class='description'>
+				<p>
+					So you have decided to bought some pizza.<br> But how should you know what exact amount of pizza you will need to eat ones's fill and to not <em>throw away</em>
+					pizza leftovers &#x1FAE3
+				</p>
+			</section>
+			<h2 class='sub-title'>Proceed with next steps to find out: </h2>
+			<form onSUbmit='calculatePizza' onreset='resetToDefaults'>
+			<div class='options-wrapper'>		
+					<section class='option-section'>
+						<h3>How many people going to eat Pizza?</h3>
+						<div class='answers-wrapper'>
+							<input hidden="true" name="peopleAmount" type="text"/>
+								<button name="peopleBtn" value="3" type='button' class='answer-button'>
+									<b>3</b>
+								</button>
+								<button name="peopleBtn" value="5" type='button' class='answer-button'>
+									<b>5</b>
+								</button>
+								<button name="peopleBtn" value="10" type='button' class='answer-button'>
+									<b>10</b>
+								</button>
+						</div>
+					</section>
+					<section class='option-section'>
+						<h3>What size of pizzas you will choose?</h3>
+						<div class='answers-wrapper'>
+								<input hidden="true" name="slicesPerPizza" type="text"/>
+								<button name="sliceBtn" value='6' type="button" class='answer-button'>
+									<b>Small</b> 
+									<span>(6 slices)</span>
+								</button>
+								<button name="sliceBtn" value='8'type="button" class='answer-button'>
+									<b>Medium</b> 
+									<span>(8 slices)</span>
+								</button>
+								<button name="sliceBtn" value='10'type="button" class='answer-button'>
+									<b>Big</b> 
+									<span>(10 slices)</span>
+								</button>
+						</div>
+					</section>
+					<section class='option-section'>
+						<h3>Pick average age for group</h3>
+						<div class='answers-wrapper'>
+							<input 
+								hidden="true"
+							 	name="averageAge" 
+								type="text"/>
+							<button name="ageBtn" value="15" type="button" class="answer-button">
+									<b>~15</b>
+							</button>
+							<button name="ageBtn" value="25" type="button" class="answer-button">
+									<b>~25</b>
+							</button>
+							<button name="ageBtn" value="35" type="button" class="answer-button">
+									<b>~35 or more</b>
+							</button>
+						</div>
+					</section>
+					<!-- RANGE SECTION -->
+					<section class="option-section">
+						<h3>Adjust rough toppings amount</h3>
+						<p>Choose approximate value between 0 and 99</p>
+						<div class="answers-wrapper">
+							<input
+								min="0"
+								max="99"
+								name="toppingPercentage" 
+								class="toppingsNumber" 
+								style="text-align: center;"
+								type="number" />
+							<input
+								step="1"
+								min="0"
+								max="99"
+								type="range" 
+								class="toppingsRange" name="toppingPercentageRange'"
+								style="padding: 0;"/>
+							<p class='sub-text'>
+								Or use range selection
+							</p>
+						</div>
+					</section>
+	
+					<section class="option-section">
+						<h3>Do your team are starving for quite some time?</h3>
+						<div class="answers-wrapper">
+							<button type="button" class="answer-button">
+								<span>SOLID YES!</span>
+							</button>
+						<p class='sub-text'>
+							Only if team consist at least one  ravenous person
+						</p>
+						</div>
+					</section>
+					<div class="submitting-wrapper">
+						<button type="submit" id="submit" 	class='submit-button'>
+								Calculate
+						</button>
+						<button type="reset" 	id="reset" 
+							class='reset-button'>
+								Reset
+						</button>
+					</div>
+			</div>
+			</form>
+			<hr>
+		</main>
+
+	<style>
+		
+	</style>
+	<!-- <script src='./index.js'>
+		
+	</script> -->
+	</body>
+</html>
