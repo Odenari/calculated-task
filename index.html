@@ -3,11 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="./styles.css">
-		<script defer rel='application/javascript' src='index.js'></script>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 		<title>Pizza Calculator</title>
 	</head>
 	<body>
@@ -23,69 +18,51 @@
 				</p>
 			</section>
 			<h2 class='sub-title'>Proceed with next steps to find out: </h2>
-			<form onSUbmit='calculatePizza' onreset='resetToDefaults'>
+			<form>
 			<div class='options-wrapper'>		
-					<section class='option-section'>
+					<section class='section-wrapper'>
 						<h3>How many people going to eat Pizza?</h3>
 						<div class='answers-wrapper'>
-							<input hidden="true" name="peopleAmount" type="text"/>
-								<button name="peopleBtn" value="3" type='button' class='answer-button'>
+							<input hidden="true" name="people-amount" type="text"/>
+								<button name="people-btn" value="3" type='button' class='answer-button'>
 									<b>3</b>
 								</button>
-								<button name="peopleBtn" value="5" type='button' class='answer-button'>
+								<button name="people-btn" value="5" type='button' class='answer-button'>
 									<b>5</b>
 								</button>
-								<button name="peopleBtn" value="10" type='button' class='answer-button'>
+								<button name="people-btn" value="10" type='button' class='answer-button'>
 									<b>10</b>
 								</button>
 						</div>
 					</section>
-					<section class='option-section'>
+					<section class='section-wrapper'>
 						<h3>What size of pizzas you will choose?</h3>
 						<div class='answers-wrapper'>
-								<input hidden="true" name="slicesPerPizza" type="text"/>
-								<button name="sliceBtn" value='6' type="button" class='answer-button'>
+								<input hidden="true" name="slices-per-pizza" type="text"/>
+								<button name="slice-btn" value='6' type="button" class='answer-button'>
 									<b>Small</b> 
 									<span>(6 slices)</span>
 								</button>
-								<button name="sliceBtn" value='8'type="button" class='answer-button'>
+								<button name="slice-btn" value='8'type="button" class='answer-button'>
 									<b>Medium</b> 
 									<span>(8 slices)</span>
 								</button>
-								<button name="sliceBtn" value='10'type="button" class='answer-button'>
+								<button name="slice-btn" value='10'type="button" class='answer-button'>
 									<b>Big</b> 
 									<span>(10 slices)</span>
 								</button>
 						</div>
 					</section>
-					<section class='option-section'>
-						<h3>Pick average age for group</h3>
-						<div class='answers-wrapper'>
-							<input 
-								hidden="true"
-							 	name="averageAge" 
-								type="text"/>
-							<button name="ageBtn" value="15" type="button" class="answer-button">
-									<b>~15</b>
-							</button>
-							<button name="ageBtn" value="25" type="button" class="answer-button">
-									<b>~25</b>
-							</button>
-							<button name="ageBtn" value="35" type="button" class="answer-button">
-									<b>~35 or more</b>
-							</button>
-						</div>
-					</section>
 					<!-- RANGE SECTION -->
-					<section class="option-section">
+					<section class="section-wrapper">
 						<h3>Adjust rough toppings amount</h3>
 						<p>Choose approximate value between 0 and 99</p>
 						<div class="answers-wrapper">
 							<input
 								min="0"
 								max="99"
-								name="toppingPercentage" 
-								class="toppingsNumber" 
+								step="1"
+								name="toppings-number" 
 								style="text-align: center;"
 								type="number" />
 							<input
@@ -93,44 +70,349 @@
 								min="0"
 								max="99"
 								type="range" 
-								class="toppingsRange" name="toppingPercentageRange'"
+								name="toppings-range"
 								style="padding: 0;"/>
 							<p class='sub-text'>
 								Or use range selection
 							</p>
 						</div>
 					</section>
-	
-					<section class="option-section">
+					<section class="section-wrapper">
 						<h3>Do your team are starving for quite some time?</h3>
 						<div class="answers-wrapper">
-							<button type="button" class="answer-button">
+							<button name="hungry-btn" type="button" class="answer-button">
 								<span>SOLID YES!</span>
 							</button>
-						<p class='sub-text'>
+						<p class="sub-text">
 							Only if team consist at least one  ravenous person
 						</p>
 						</div>
 					</section>
 					<div class="submitting-wrapper">
-						<button type="submit" id="submit" 	class='submit-button'>
+						<button type="submit" class='submit-button'>
 								Calculate
 						</button>
-						<button type="reset" 	id="reset" 
-							class='reset-button'>
+						<button type="reset" class='reset-button'>
 								Reset
 						</button>
 					</div>
 			</div>
 			</form>
 			<hr>
+			<div id="result-wrapper" class="hidden section-wrapper">
+				<h3 id="result-title"></h3>
+			</div>
 		</main>
-
 	<style>
-		
+		:root {
+			--base-spacing: 1rem;
+			--bg-clr: #1a3636;
+			--accent-clr: #d6bd98;
+			--btn-clr: #496a4e;
+			--btn-y-pad: 0.75rem;
+			--btn-upscale: 1.08;
+			--btn-pressed: 0.98;
+			--btn-downscale: 1.05;
+			--arm-width: 17.5rem;
+			--arm-width-sm: 12rem;
+			--section-width: 25rem;
+			--section-width-sm: 20rem;
+			--base-shadow: #b2ae39b5;
+			--active-shadow: -2px -2px 2px 1px rgba(193, 246, 157, 0.57);
+		}
+
+
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100dvh;
+			padding: calc(var(--base-spacing) * 1.5);
+			background-color: var(--bg-clr);
+			color: var(--accent-clr);
+		}
+
+		hr {
+			width: 100%;
+			margin: 0 auto;
+			margin-block: calc(1.5 * var(--base-spacing));
+			color: var(--accent-clr);
+		}
+
+		main {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		p {
+			text-align: center;
+			text-wrap: balance;
+			margin-bottom: var(--base-spacing);
+			font-size: larger;
+		}
+
+		form{
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		button,
+		input {
+			border: none;
+			outline: none;
+			cursor: pointer;
+			color: var(--accent-clr);
+			font-weight: 600;
+			font-family: inherit;
+			min-width: fit-content;
+			width: var(--arm-width);
+			padding-block: var(--btn-y-pad);
+			border-radius: 0.125rem;
+			box-shadow: 2px 2px 2px 0 var(--base-shadow);
+			background-color: var(--btn-clr);
+			transition: all 100ms ease-in-out;
+		}
+
+		button:hover {
+			scale: var(--btn-upscale);
+		}
+
+		button:active {
+			scale: var(--btn-downscale);
+		}
+
+
+		.sub-title {
+			width: 80%;
+			text-align: center;
+		}
+
+		.description {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin-block: var(--base-spacing);
+		}
+
+		.options-wrapper {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-direction: column;
+			gap: var(--base-spacing);
+		}
+
+		.section-wrapper {
+			width: var(--section-width);
+			padding: var(--base-spacing);
+			margin-top: var(--base-spacing);
+			border-radius: 8px;
+			border: 1px solid #677d6a;
+			& > h3 {
+				text-align: center;
+				margin-bottom: var(--base-spacing);
+			}
+		}
+
+		.sub-text {
+			margin-bottom: 0;
+			font-size: 0.725rem;
+			opacity: 0.7;
+		}
+
+		.answers-wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			gap: var(--base-spacing);
+		}
+
+		.pressed-btn {
+			scale: var(--btn-upscale);
+			box-shadow: var(--active-shadow); 
+		}
+
+		button[data-hunger="true"] {
+			scale: var(--btn-upscale);
+			box-shadow: var(--active-shadow); 
+		}
+
+		.reset-button {
+			box-shadow: none;
+			border: 1px solid;
+			background-color: transparent;
+		}
+
+		.submitting-wrapper {
+			display: flex;
+			flex-direction: row;
+			width: var(--section-width);
+			gap: var(--base-spacing);
+		}
+
+		.hidden {
+			display: none;
+			visibility: hidden;
+		}
+
+		@media (width < 1445px) {
+			.options-wrappers {
+				padding-inline: var(--base-spacing);
+				flex-direction: column;
+			}
+		}
+
+		@media (width < 680px) {
+			.submitting-wrapper {
+				flex-direction: column;
+				align-items: center;
+			}
+			.section-wrapper {
+				width: var(--section-width-sm);
+			}
+			button, input {
+				width: var(--arm-width-sm);
+			}
+		}
 	</style>
-	<!-- <script src='./index.js'>
-		
-	</script> -->
+	<script>
+		window.PIZZA_DEFAULTS = Object.freeze({
+			PEOPLE_AMOUNT: 3,
+			PIZZA_SLICES: 6,
+			TOPPINGS: 0,
+			IS_RAVENOUS: false,
+			HUNGER_MULT: 1.75,
+		});
+
+		const PARTY_FACE = '\u{1F973}';
+
+		const peopleBtns = document.querySelectorAll('button[name="people-btn"]');
+		const sliceBtns = document.querySelectorAll('button[name="slice-btn"]');
+		const hungryBtn = document.querySelector('button[name="hungry-btn"]');
+
+		const peopleInput = document.querySelector('input[name="people-amount"]');
+		const slicesInput = document.querySelector('input[name="slices-per-pizza"]');
+		const toppingsNumberInput = document.querySelector(
+			'input[name="toppings-number"]'
+		);
+		const toppingsRangeInput = document.querySelector(
+			'input[name="toppings-range"]'
+		);
+
+		const resultDiv = document.querySelector('#result-wrapper');
+		const resultTitle = document.querySelector('#result-title');
+
+		window.onload = setDefaultValues;
+
+		toppingsNumberInput.addEventListener(
+			'input',
+			evt => (toppingsRangeInput.value = evt.currentTarget.value)
+		);
+
+		toppingsRangeInput.addEventListener(
+			'input',
+			evt => (toppingsNumberInput.value = evt.currentTarget.value)
+		);
+
+		peopleBtns.forEach(btn =>
+			btn.addEventListener(
+				'click',
+				evt => {
+					peopleInput.value = evt.currentTarget.value;
+					changePressedState(peopleBtns, btn.value)
+				}
+			)
+		);
+
+		sliceBtns.forEach(btn =>
+			btn.addEventListener(
+				'click',
+				evt => {
+					slicesInput.value = evt.currentTarget.value;
+					changePressedState(sliceBtns, btn.value)
+				}
+			)
+		);
+
+		hungryBtn.addEventListener('click', () => {
+			if (!hungryBtn.getAttribute('data-hunger')) {
+				setHunger();
+				return;
+			}
+			resetHunger();
+		});
+
+		const form = document.querySelector('form');
+
+		form.onsubmit = evt => {
+			evt.preventDefault();
+			const slicesPerPerson = Math.ceil(3 * (+hungryBtn.value || 1));
+
+			let totalPizzas = Math.ceil(
+				(+peopleInput.value * slicesPerPerson) / +slicesInput.value
+			);
+
+			if (+toppingsNumberInput.value > 0) {
+				totalPizzas = totalPizzas - toppingsNumberInput.value / 100;
+			}
+			showResults(totalPizzas)
+		};
+
+		form.onreset = evt => {
+			evt.preventDefault();
+			setDefaultValues();
+			hideResults();
+		};
+
+		function setDefaultValues() {
+			const { PEOPLE_AMOUNT, PIZZA_SLICES, TOPPINGS } = window.PIZZA_DEFAULTS;
+			peopleInput.value = PEOPLE_AMOUNT;
+			slicesInput.value = PIZZA_SLICES;
+			toppingsNumberInput.value = TOPPINGS;
+			toppingsRangeInput.value = TOPPINGS;
+			resetHunger();
+		}
+
+		function setHunger() {
+			hungryBtn.setAttribute('data-hunger', true);
+			hungryBtn.value = PIZZA_DEFAULTS.HUNGER_MULT;
+			hungryBtn.textContent = 'Cancel multiplier';
+		}
+
+		function resetHunger() {
+			hungryBtn.removeAttribute('data-hunger');
+			hungryBtn.value = 0;
+			hungryBtn.textContent = 'SOLID YES!';
+		}
+
+		function showResults(total) {
+			resultTitle.textContent = `
+			Your estimated results are ready! Order at least ${
+			total.toPrecision(2)} pizzas and be happy! ${PARTY_FACE}`;
+			resultDiv.classList.remove('hidden');
+			resultDiv.scrollIntoView();
+		}
+
+		function hideResults() {
+			if (resultDiv.classList.contains('hidden')) return;
+			resultDiv.classList.add('hidden');
+		}
+
+		function changePressedState(btnList, value) {
+			btnList.forEach((btn) => btn.value === value ? btn.classList.add('pressed-btn') : btn.classList.remove('pressed-btn'));
+		}
+	</script>
 	</body>
 </html>
