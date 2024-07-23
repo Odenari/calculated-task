@@ -3,9 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		<title>Pizza Calculator</title>
 	</head>
-	<body>
+	<body class='custom-font'>
 		<header>
 			<h1>Pizza Calculator</h1>
 		</header>
@@ -172,7 +175,6 @@
 			outline: none;
 			cursor: pointer;
 			color: var(--accent-clr);
-			font-weight: 600;
 			font-family: inherit;
 			min-width: fit-content;
 			width: var(--arm-width);
@@ -244,11 +246,17 @@
 			box-shadow: var(--active-shadow); 
 		}
 
+		/* toggled button */
 		button[data-hunger="true"] {
 			scale: var(--btn-upscale);
 			box-shadow: var(--active-shadow); 
 		}
 
+
+
+		.submit-button, button[name="hungry-btn"] {
+			font-weight: 600;
+		}
 		.reset-button {
 			box-shadow: none;
 			border: 1px solid;
@@ -286,8 +294,18 @@
 				width: var(--arm-width-sm);
 			}
 		}
+
+		.custom-font {
+			font-family: "Montserrat", sans-serif;
+			font-optical-sizing: auto;
+			font-weight: 500;
+			font-style: normal;
+		}	
+
 	</style>
 	<script>
+		// constants 
+		const PARTY_FACE = '\u{1F973}';
 		window.PIZZA_DEFAULTS = Object.freeze({
 			PEOPLE_AMOUNT: 3,
 			PIZZA_SLICES: 6,
@@ -296,7 +314,6 @@
 			HUNGER_MULT: 1.75,
 		});
 
-		const PARTY_FACE = '\u{1F973}';
 
 		const peopleBtns = document.querySelectorAll('button[name="people-btn"]');
 		const sliceBtns = document.querySelectorAll('button[name="slice-btn"]');
@@ -314,6 +331,7 @@
 		const resultDiv = document.querySelector('#result-wrapper');
 		const resultTitle = document.querySelector('#result-title');
 
+		// reset to default state
 		window.onload = setDefaultValues;
 
 		toppingsNumberInput.addEventListener(
@@ -410,6 +428,8 @@
 			resultDiv.classList.add('hidden');
 		}
 
+		/* will remove pressed state from any buttons in list
+		   and add state to btn that was pressed */
 		function changePressedState(btnList, value) {
 			btnList.forEach((btn) => btn.value === value ? btn.classList.add('pressed-btn') : btn.classList.remove('pressed-btn'));
 		}
